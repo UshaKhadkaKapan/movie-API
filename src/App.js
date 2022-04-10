@@ -23,6 +23,14 @@ function App() {
     setSearchMovie({});
   };
 
+  const deleteMovie = (imdbID) => {
+    alert(imdbID);
+    const filteredMovieList = movieList.filter(
+      (movie) => movie.imdbID !== imdbID
+    );
+    setMovieList(filteredMovieList);
+  };
+
   console.log(searchMovie);
   return (
     <div className="wrapper">
@@ -34,7 +42,7 @@ function App() {
         )}
 
         <hr />
-        <MovieList movieList={movieList} />
+        <MovieList movieList={movieList} deleteMovie={deleteMovie} />
       </Container>
     </div>
   );
