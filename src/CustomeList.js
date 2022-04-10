@@ -18,14 +18,14 @@ const CustomeList = ({ movieObj, fun, btnDelete = false }) => {
         <Card.Title className="text-dark">
           Rating:{movieObj.imdbRating}
         </Card.Title>
-        <p>{movieObj.Plot}</p>
+        <p className="text-dark">{movieObj.Plot}</p>
 
         {btnDelete ? (
           <div className="d-grid gap-2">
             <Button
               variant="primary"
               size="lg"
-              onClick={() => fun(movieObj.imdb)}
+              onClick={() => fun(movieObj.imdbID)}
             >
               Delete
             </Button>
