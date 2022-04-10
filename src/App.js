@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import "./App.css";
 import CustomeCard from "./CustomeCard";
@@ -7,18 +8,33 @@ import SearchForm from "./SearchForm";
 import Title from "./Title";
 
 function App() {
+  const [searchMovie, setSearchMovie] = useState({});
+  const [movieList, setMovieList] = useState([]);
+
   const getMovie = async (search) => {
     const { data } = await fetchMovie(search);
-    console.log(data);
+    setSearchMovie(data);
   };
+
+  const addToMovieList = (type) => {
+    // adding cat properties in movie list
+
+    setMovieList([...movieList, { ...searchMovie, cat: type }]);
+    setSearchMovie({});
+  };
+
+  console.log(searchMovie);
   return (
     <div className="wrapper">
       <Container>
         <Title />
         <SearchForm getMovie={getMovie} />
-        <CustomeCard />
+        {searchMovie?.imdbID && (
+          <CustomeCard movieObj={searchMovie} fun={addToMovieList} />
+        )}
+
         <hr />
-        <MovieList />
+        <MovieList movieList={movieList} />
       </Container>
     </div>
   );
