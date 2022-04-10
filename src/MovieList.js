@@ -40,7 +40,7 @@ const MovieList = ({ movieList }) => {
       <Row>
         <Col className="d-flex flex-wrap ">
           {filterMovies.map((movie, i) => (
-            <CustomeCard key={i} movieObj={movie} />
+            <CustomeCard key={i} movieObj={movie} btnDelete={true} />
           ))}
         </Col>
       </Row>
